@@ -257,7 +257,20 @@ jobs:
       - name: 🚀 上传到 Release
         uses: softprops/action-gh-release@v2.2.1
         with:
-          tag_name: iStoreOS-${{ env.VERSION }}-${{ inputs.openwrt_rootfs }}-${{ inputs.network_settings }}
+          # 标签名：包含设备型号，确保每个设备都有独立的 Release
+          tag_name: iStoreOS-${{ env.VERSION }}-${{ inputs.openwrt_board }}-${{ inputs.openwrt_rootfs }}-${{ inputs.network_settings }}
+          # 标题：Release 界面上的标题，更易读
+          name: iStoreOS for ${{ inputs.openwrt_board }} (v${{ env.VERSION }})
+          body: |
+            ✅ 设备型号：`${{ inputs.openwrt_board }}`
+            ✅ 内核版本：`${{ inputs.openwrt_kernel }}`
+            ✅ Rootfs底包：`${{ inputs.openwrt_rootfs }}`
+            ✅ 初始网络配置：`${{ inputs.network_settings }}`
+            🧩 集成： 包含了基础系统组件、驱动、网络工具、容器支持、LuCI界面及插件等。与官方集成列表基本一致
+            👤 用户名： root
+            🔒 密码：无
+            🌐 IP： 单网口-动态获取（从上级路由找寻）；多网口-IP：192.168.100.1
+            此为 GitHub Actions 自动构建固件
           files: |
             ${{ env.PACKAGED_OUTPUTPATH }}/*.img.gz
         env:
