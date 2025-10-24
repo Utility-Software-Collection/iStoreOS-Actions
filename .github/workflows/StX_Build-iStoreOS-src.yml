@@ -244,11 +244,17 @@ jobs:
         with:
           tag_name: iStoreOS-${{ env.VERSION }}-SNAPSHOT-dhcp
           body: |
-            🔄 版本： iStoreOS-${{ env.VERSION }}-SNAPSHOT（源码编译，追新版）
+            🔄 版本： iStoreOS-${{ env.VERSION }}-SNAPSHOT（源码编译，开发版）
             
             📂 来源： https://github.com/istoreos/istoreos
             
             🧠 内核： Please Login to iStoreOS → System → Amlogic Service → Replace the Kernel
+
+            ✅ 设备型号：`${{ inputs.openwrt_board }}`
+            
+            ✅ 内核版本：`${{ inputs.openwrt_kernel }}`
+            
+            ✅ 初始网络配置：`${{ inputs.network_settings }}`
             
             🧩 集成： 包含了基础系统组件、驱动、网络工具、容器支持、LuCI界面及插件等。与官方集成列表基本一致
             
